@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16A323" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="CoreCoach" representedClassName="CoreCoach" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salary" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreTeam" inverseName="coach" inverseEntity="CoreTeam" syncable="YES"/>
+    </entity>
+    <entity name="CorePlayer" representedClassName="CorePlayer" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salary" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreTeam" inverseName="players" inverseEntity="CoreTeam" syncable="YES"/>
+    </entity>
+    <entity name="CoreSnack" representedClassName="CoreSnack" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="snackId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taste" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CoreStudent" representedClassName="CoreStudent" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salary" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="teachers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoreTeacher" inverseName="students" inverseEntity="CoreTeacher" syncable="YES"/>
+    </entity>
+    <entity name="CoreTeacher" representedClassName="CoreTeacher" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salary" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoreStudent" inverseName="teachers" inverseEntity="CoreStudent" syncable="YES"/>
+    </entity>
+    <entity name="CoreTeam" representedClassName="CoreTeam" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="flag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="coach" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreCoach" inverseName="team" inverseEntity="CoreCoach" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CorePlayer" inverseName="team" inverseEntity="CorePlayer" syncable="YES"/>
+    </entity>
+    <entity name="CoreTicket" representedClassName="CoreTicket" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="ticketId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="CoreWorker" representedClassName="CoreWorker" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salary" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="snacks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoreSnack" syncable="YES"/>
+        <relationship name="ticket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreTicket" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CoreCoach" positionX="279" positionY="-0" width="128" height="133"/>
+        <element name="CorePlayer" positionX="-252" positionY="-3" width="128" height="163"/>
+        <element name="CoreSnack" positionX="151" positionY="-180" width="128" height="120"/>
+        <element name="CoreTeam" positionX="-9" positionY="18" width="128" height="133"/>
+        <element name="CoreTicket" positionX="54" positionY="-369" width="128" height="90"/>
+        <element name="CoreWorker" positionX="-171" positionY="-234" width="128" height="150"/>
+        <element name="CoreStudent" positionX="-101" positionY="-511" width="128" height="133"/>
+        <element name="CoreTeacher" positionX="-351" positionY="-378" width="128" height="133"/>
+    </elements>
+</model>
