@@ -851,8 +851,15 @@ static NSManagedObjectContext *saveContext;
                     
                     if ([propertyValue count] == 0) {
                         
-                        propertyValue = nil;
                         [self setValue:nil forKeyPath:property->_getPath];
+                        continue;
+                    }
+                    
+                    id element = [propertyValue firstObject];
+                    if ([element isKindOfClass:[NSString class]] ||
+                        [element isKindOfClass:[NSNumber class]]) {
+                        
+                        propertyValue = [propertyValue componentsJoinedByString:@","];
                     } else {//直接Copy下来 懒得拆了
                     
                         id containerPropertyClass = NSClassFromString(containerPropertyKeypaths[property->_name]);
