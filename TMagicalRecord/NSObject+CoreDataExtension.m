@@ -849,13 +849,10 @@ static NSManagedObjectContext *saveContext;
                     propertyValue = managedObject;
                 } else if (property->_type == HHPropertyTypeArray) {
                     
-                    if ([propertyValue count] == 0) { continue ; }
-                    
-                    id element = [propertyValue firstObject];
-                    if ([element isKindOfClass:[NSNumber class]] ||
-                        [element isKindOfClass:[NSString class]]) {
+                    if ([propertyValue count] == 0) {
                         
-                        propertyValue = [propertyValue componentsJoinedByString:@","];
+                        propertyValue = nil;
+                        [self setValue:nil forKeyPath:property->_getPath];
                     } else {//直接Copy下来 懒得拆了
                     
                         id containerPropertyClass = NSClassFromString(containerPropertyKeypaths[property->_name]);
