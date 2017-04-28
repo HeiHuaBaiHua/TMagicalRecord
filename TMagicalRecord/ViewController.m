@@ -55,6 +55,8 @@
 //
 //    [self makeStudentsAndTeachers];
 //
+//    [self modifyWorker];
+//
 //    [self makeSnackOnOtherThread];
 //    [self makeSnackOnOtherThread2];
 }
@@ -248,6 +250,106 @@
 //        }];
 //        [objects clearRelationship];
 //    }];
+}
+
+- (void)modifyWorker {
+    
+    //这块儿就挨个注释着凑合看吧 我也比较懒
+    NSInteger ID = 888;
+    {//顺便存点东西
+//        Ticket *ticket = [Ticket instanceWithId:ID];
+//        Worker *worker = [Worker instanceWithId:ID];
+//        worker.projects = @[@"项目1", @"项目2", @"项目x"];//worker.projects是数组 但是CoreWorker.projects是字符串
+//        NSMutableArray *snacks = [NSMutableArray array];
+//        for (int i = 800; i < 809; i++) {
+//            [snacks addObject:[Snack instanceWithId:i]];
+//        }
+//        worker.snacks = snacks;
+//        worker.ticket = ticket;
+//        [worker saveWithCompletionHandler:nil];
+//        
+//        [Worker findFirstByAttribute:@"userId" withValue:@(ID) completionHandler:^(Worker *object) {
+//            LogFunc
+//            
+//            [object log];
+//            [object.ticket log];
+//            [object.snacks enumerateObjectsUsingBlock:^(Snack * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                [obj log];
+//            }];
+//            
+//            LogFunc
+//        }];
+//        return;
+    }
+    
+    {//普通修改操作
+        Worker *worker = [Worker instanceWithId:ID];
+        worker.age = 111;
+        worker.name = @"改";
+        worker.salary = 1.11;
+        worker.ticket = [Ticket instanceWithId:818];
+        worker.snacks = @[[Snack instanceWithId:818]];
+        worker.projects = @[@"项目0"];
+        [worker save];
+        
+        NSLog(@"-----------------改-----------------");
+        [Worker findFirstByAttribute:@"userId" withValue:@(ID) completionHandler:^(Worker *object) {
+            
+            [object log];
+            [object.ticket log];
+            [object.snacks enumerateObjectsUsingBlock:^(Snack * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj log];
+            }];
+        }];
+        return;
+    }
+    
+    {//无用的置空操作
+//        Worker *worker = [Worker new];
+//        worker.userId = ID;
+//        worker.age = 0;
+//        worker.name = nil;
+//        worker.salary = 0;
+//        worker.ticket = nil;
+//        worker.snacks = nil;
+//        worker.projects = nil;
+//        [worker save];
+//        
+//        NSLog(@"-----------------无用置空-----------------");
+//        [Worker findFirstByAttribute:@"userId" withValue:@(ID) completionHandler:^(Worker *object) {
+//
+//            [object log];
+//            [object.ticket log];
+//            [object.snacks enumerateObjectsUsingBlock:^(Snack * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                [obj log];
+//            }];
+//        }];
+//        return;
+    }
+    
+    {//正确的置空操作
+        Worker *worker = [Worker new];
+        worker.userId = ID;
+        worker.age = CDZero;
+        worker.name = @"";
+        worker.salary = CDZero;
+        worker.ticket = [NSNull null];//单向的customObject
+        worker.projects = @[];
+        [worker save];
+        
+        [Ticket deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"ticketId = %ld", ID]];
+        [Snack deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"snackId >= 800 && snackId < 809"]];
+        
+        NSLog(@"-----------------有用置空-----------------");
+        [Worker findFirstByAttribute:@"userId" withValue:@(ID) completionHandler:^(Worker *object) {
+
+            [object log];
+            [object.ticket log];
+            [object.snacks enumerateObjectsUsingBlock:^(Snack * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj log];
+            }];
+        }];
+    }
 }
 
 - (void)makeSnackOnOtherThread {

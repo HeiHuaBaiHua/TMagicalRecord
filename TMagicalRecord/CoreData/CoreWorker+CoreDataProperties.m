@@ -21,5 +21,6 @@
 @dynamic userId;
 @dynamic snacks;
 @dynamic ticket;
+@dynamic projects;
 
 @end

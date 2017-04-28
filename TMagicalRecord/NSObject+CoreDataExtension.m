@@ -841,6 +841,11 @@ static NSManagedObjectContext *saveContext;
                     if (number == CDZero) { propertyValue = @0; }
                 } else if (property->_type == HHPropertyTypeCustomObject) {
                     
+                    if (propertyValue == kCFNull) {
+                        
+                        [self setValue:nil forKeyPath:property->_getPath];
+                        continue;
+                    }
                     if (![(id)property->_cls respondsToSelector:@selector(primaryKeys)]) { continue; }
                     
                     NSPredicate *predicate = [[HHPredicate predicateWithEqualKeys:[property->_cls primaryKeys]] makePredicateWithObjcet:propertyValue];

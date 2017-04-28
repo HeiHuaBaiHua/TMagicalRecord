@@ -13,6 +13,7 @@
 @interface Worker : Person
 
 @property (strong, nonatomic) Ticket *ticket;
+@property (strong, nonatomic) NSArray *projects;
 @property (strong, nonatomic) NSArray<Snack *> *snacks;
 
 @end

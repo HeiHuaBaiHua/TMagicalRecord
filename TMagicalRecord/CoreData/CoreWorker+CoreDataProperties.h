@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int64_t age;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSNumber *salary;
+@property (nullable, nonatomic, copy) NSString *projects;
 @property (nonatomic) int64_t sex;
 @property (nonatomic) int64_t userId;
 @property (nullable, nonatomic, retain) NSSet<CoreSnack *> *snacks;
